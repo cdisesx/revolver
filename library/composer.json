@@ -1,0 +1,23 @@
+{
+    "name": "xiaofu/yii2",
+    "authors": [
+        {
+            "name": "Justin",
+            "email": "hongxm@oriental-finance.com"
+        }
+    ],
+    "require": {
+		"yiisoft/yii2": ">=2.0.12",
+        "yiisoft/yii2-swiftmailer": "*",
+        "phpoffice/phpexcel": "*",
+        "aliyuncs/oss-sdk-php": "*"
+	},
+	"require-dev": {
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    }
+}
