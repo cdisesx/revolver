@@ -17,7 +17,6 @@ class SearchService extends BaseService
 
     public function getList()
     {
-
         $form = new UserForm();
         $form->validateScenario(Yii::$app->params, UserForm::SCENARIO_CREATE);
 

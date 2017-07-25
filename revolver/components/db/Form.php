@@ -2,12 +2,12 @@
 
 namespace app\components\db;
 
+use app\components\service\ServiceException;
 use ArrayObject;
 use ReflectionClass;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\base\InvalidParamException;
-use yii\db\Exception;
 use yii\helpers\Inflector;
 use yii\validators\Validator;
 
@@ -101,11 +101,11 @@ class Form extends Model
                 list($code, $message) = explode(' ', $error, 2);
 
                 if (preg_match('/^[1-9]\d+$/', $code)) {
-                    throw new Exception($message, (int)$code);
+                    throw new ServiceException($message, (int)$code);
                 }
             }
 
-            throw new Exception($error);
+            throw new ServiceException($error);
         }
     }
 
@@ -175,8 +175,9 @@ class Form extends Model
     {
         $validator = null;
 
-        if (class_exists('app\components\Box')) {
-            $validator = call_user_func(['app\components\Box', 'get'], $name);
+        if (class_exists('app\components\validators\Box')) {
+            $validator = call_user_func(['app\components\validators\Box', 'get'], $name);
+
         }
 
         return $validator ?: $name;
