@@ -2,9 +2,9 @@
 
 namespace app\components\rest;
 
+use app\components\service\ServiceException;
 use Yii;
 use yii\base\ActionFilter;
-use yii\web\ForbiddenHttpException;
 
 /**
  * Access Filter
@@ -13,12 +13,16 @@ use yii\web\ForbiddenHttpException;
  */
 class AccessFilter extends ActionFilter
 {
+    private $accessKeyId = false;
+    private $accessKeySecret = false;
+
+
     /**
      * @inheritdoc
      */
     public function beforeAction($action)
     {
-//        $this->checkToken(Yii::$app->request->headers);
+        $this->checkToken(Yii::$app->request->headers);
         return parent::beforeAction($action);
     }
 
@@ -29,9 +33,31 @@ class AccessFilter extends ActionFilter
      */
     public function checkToken($headers)
     {
-        if (!isset($headers->token) || Yii::$app->params['token'] != $headers->get('token')) {
-            throw new ForbiddenHttpException();
+        $this->accessKeyId = addslashes($headers->get('accessKeyId'));
+        $this->accessKeySecret = addslashes($headers->get('accessKeySecret'));
+
+        if(!$this->accessKeyId) throw new ServiceException('获取不到accessKeyID', 100001);
+        if(!$this->accessKeySecret) throw new ServiceException('获取不到accessKeySecret', 100002);
+
+        $ok = $this->checkTokenInRedis() ? true : $this->checkTokenInDB() ? true : false;
+
+        if(!$ok){
+            throw new ServiceException('accessKey校验错误', 100003);
         }
+
+    }
+
+    public function checkTokenInRedis()
+    {
+        $res = Yii::$app->redis;
+        return  $res->get($this->accessKeyId) === $this->accessKeySecret ;
+    }
+
+    public function checkTokenInDB()
+    {
+
+        $res = Yii::$app->redis;
+        $res->set($this->accessKeyId, $this->accessKeySecret);
     }
 
 

@@ -13,11 +13,11 @@ return [
     'params' => [],
     'bootstrap' => ['log'],
     'components' => [
-//        'redis' => [
-//            'class' => 'app\components\tools\Redis',
-//            'host' => '192.168.88.164',
-//            'port' => '22121'
-//        ],
+        'redis' => [
+            'class' => 'app\components\tools\Redis',
+            'host' => '192.168.88.164',
+            'port' => '22121'
+        ],
         'dbTushu' => [
             'class' => 'yii\db\Connection',
             'dsn' => sprintf(
@@ -45,6 +45,18 @@ return [
 //                ['dsn' => 'dsn for slave server 3'],
 //                ['dsn' => 'dsn for slave server 4'],
 //            ],
+
+        ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => sprintf(
+                'mysql:host=%s;dbname=%s',
+                '192.168.88.163',
+                'auth_sys'
+            ),
+            'username' => 'php_user',
+            'password' => 'Og7Ev0iJ4z',
+            'charset' => 'utf8',
 
         ],
         'log' => [

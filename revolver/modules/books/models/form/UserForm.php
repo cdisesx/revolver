@@ -43,7 +43,7 @@ class UserForm extends Form
             ['name', 'required'],
             ['name', 'string', 'max' => 100],
             ['mobile', 'required'],
-            ['mobile', 'mobile'],
+            ['mobile', 'idcard'],
         ];
     }
 }
