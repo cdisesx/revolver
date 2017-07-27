@@ -31,7 +31,7 @@ class BookController extends Controller
 
     public function actionList()
     {
-        $result = BookSearch::getInstance()->getList();
+        $result = BookSearch::getInstance()->checkform('books\models\form\BookForm', 'search')->getList();
         return new ResponseFormat(['data' => $result]);
     }
 

@@ -4,7 +4,6 @@ namespace app\components\rest;
 
 use Yii;
 use yii\base\ActionFilter;
-use yii\helpers\ArrayHelper;
 use yii\web\ForbiddenHttpException;
 
 /**

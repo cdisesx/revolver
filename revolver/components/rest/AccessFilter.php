@@ -22,7 +22,7 @@ class AccessFilter extends ActionFilter
      */
     public function beforeAction($action)
     {
-        $this->checkToken(Yii::$app->request->headers);
+//        $this->checkToken(Yii::$app->request->headers);
         return parent::beforeAction($action);
     }
 

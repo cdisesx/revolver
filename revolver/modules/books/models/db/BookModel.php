@@ -78,9 +78,22 @@ class BookModel extends ActiveRecord
     }
 
 
+    /**
+     * 一对一关系
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser()
     {
         return $this->hasOne(UserModel::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * 一对多关系
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(UserModel::className(), ['id' => 'user_id']);
     }
 
 }

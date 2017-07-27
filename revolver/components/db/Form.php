@@ -44,20 +44,20 @@ class Form extends Model
      *
      * @inheritdoc
      */
-    public function setAttributes($values, $safeOnly = true)
-    {
-        if (is_array($values)) {
-            $attributes = array_flip($safeOnly ? $this->safeAttributes() : $this->attributes());
-            foreach ($values as $name => $value) {
-                $name = Inflector::variablize($name);
-                if (isset($attributes[$name])) {
-                    $this->$name = $value;
-                } elseif ($safeOnly) {
-                    $this->onUnsafeAttribute($name, $value);
-                }
-            }
-        }
-    }
+//    public function setAttributes($values, $safeOnly = true)
+//    {
+//        if (is_array($values)) {
+//            $attributes = array_flip($safeOnly ? $this->safeAttributes() : $this->attributes());
+//            foreach ($values as $name => $value) {
+//                $name = Inflector::variablize($name);
+//                if (isset($attributes[$name])) {
+//                    $this->$name = $value;
+//                } elseif ($safeOnly) {
+//                    $this->onUnsafeAttribute($name, $value);
+//                }
+//            }
+//        }
+//    }
 
     /**
      * 返回非空(!== null)的字段, 并且将驼峰转为下划线格式
@@ -96,6 +96,7 @@ class Form extends Model
         if (!$this->validate()) {
             $attribute = key($this->getErrors());
             $error = parent::getFirstError($attribute);
+
 
             if (strpos($error, ' ')) {
                 list($code, $message) = explode(' ', $error, 2);
