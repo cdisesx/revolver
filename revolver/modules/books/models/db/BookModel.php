@@ -77,6 +77,14 @@ class BookModel extends ActiveRecord
         ];
     }
 
+    protected $enums = [
+        'status' => [
+            1=>'在架',
+            2=>'已借出',
+            3=>'丢失',
+            4=>'续借'
+        ]
+    ];
 
     /**
      * 一对一关系

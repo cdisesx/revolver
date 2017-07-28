@@ -4,6 +4,8 @@ namespace app\components\rest;
 
 use Yii;
 use yii\base\ActionFilter;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\web\ForbiddenHttpException;
 
 /**
@@ -35,7 +37,6 @@ class HeaderFilter extends ActionFilter
         if('application/json' !== $contentType){
             throw new ForbiddenHttpException('Please use the allowed head!');
         }
-
     }
 
     /**
@@ -44,8 +45,7 @@ class HeaderFilter extends ActionFilter
      */
     public function setAppParams()
     {
-        Yii::$app->params = array_merge(json_decode( \Yii::$app->request->getRawBody(), true ), Yii::$app->params);
-
+        Yii::$app->params = (array)ArrayHelper::merge( Json::decode( \Yii::$app->request->getRawBody(), true ), Yii::$app->params);
     }
 
 

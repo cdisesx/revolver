@@ -7,16 +7,19 @@
  */
 namespace app\components\service;
 
-
-use books\models\db\BookModel;
 use yii\db\Query;
 
 class SearchService extends BaseService
 {
 
+    /**
+     * 根据搜索配置规则后，获取列表，其中插入了分页
+     * @return mixed
+     */
     public function getList()
     {
         $M = \Yii::createObject($this->getDefaultModel());
+        $this->setEnumsByModel($M);
 
         $Query = new Query();
         $this->setSearch($Query);
@@ -31,6 +34,30 @@ class SearchService extends BaseService
         return $list;
     }
 
+
+    /**
+     * 根据配置规则，获取详情
+     * @return mixed
+     */
+    public function getDetail()
+    {
+        $M = \Yii::createObject($this->getDefaultModel());
+        $this->setEnumsByModel($M);
+
+        if($this->getRulesBySearchOps){
+            $Query = new Query();
+            $this->setSearch($Query);
+            return $Query->one($M::getDb());
+        }else{
+            return $M::findOne($this->form->id);
+        }
+
+    }
+
+    /**
+     * 搜索规则执行
+     * @param $Query
+     */
     public function setSearch(&$Query)
     {
         // from 处理
@@ -56,7 +83,7 @@ class SearchService extends BaseService
         }
         // andFilerwhere处理
         if($this->getSearchOp('andFilterWhere')){
-            foreach ($this->getSearchOp('join') as $andFilerWhere) {
+            foreach ($this->getSearchOp('andFilterWhere') as $andFilerWhere) {
                 $Query->andFilterWhere($andFilerWhere);
             }
         }
@@ -71,21 +98,16 @@ class SearchService extends BaseService
 
     }
 
-
-    public function getDetail()
-    {
-        $id = \Yii::$app->request->post('id', 11);
-        $books = BookModel::findOne($id);
-        return $books;
-    }
-
-
-
-
-
+    /**
+     * 搜索规则配置
+     * @$searchOps null|array  配置文件
+     * @$getRulesBySearchOps bool  使用配置开关
+     */
     protected $searchOps = null;
+    protected $getRulesBySearchOps = false;
     public function setSearchOps($searchOp)
     {
+        $this->getRulesBySearchOps = true;
         $this->searchOps = array_merge([
             'select' => '*',
             'join' => null,
@@ -101,11 +123,31 @@ class SearchService extends BaseService
     }
     public function setSearchOp($opName, $value)
     {
+        $this->getRulesBySearchOps = true;
         $this->searchOps[$opName] = $value;
     }
     public function getSearchOp($opName)
     {
         return isset($this->searchOps[$opName]) ? $this->searchOps[$opName] : null;
+    }
+
+
+    /**
+     * @$Enums 枚举数组
+     */
+    static public $enums;
+    static public function getEnums()
+    {
+        return static::$enums;
+    }
+    static public function setEnums($enums)
+    {
+        static::$enums = $enums;
+    }
+    public function setEnumsByModel($Model)
+    {
+        $enumPart = $Model::className();
+        static::$enums[ strtolower(str_replace('Model', '', substr($enumPart, strrpos($enumPart, '\\')+1))) ] = $Model->getEnums();
     }
 
 }

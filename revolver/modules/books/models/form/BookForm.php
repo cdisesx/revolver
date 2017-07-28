@@ -39,7 +39,8 @@ class BookForm extends Form
                 'pic',
                 'buy_time'
             ],
-            'search' => ['phone', 'key_word', 'status', 'page', 'size'],
+            'list' => ['phone', 'key_word', 'status', 'page', 'size'],
+            'detail'=>['id'],
             'update' => [
                 'id',
                 'name',
@@ -58,14 +59,14 @@ class BookForm extends Form
     {
         return [
             [['introduction'], 'string'],
-            [['status', 'user_id', 'page', 'size'], 'integer'],
+            [['id', 'status', 'user_id', 'page', 'size'], 'integer'],
             [['borrow_time', 'lose_time', 'return_time', 'renew_time', 'buy_time'], 'safe'],
             [['before_lose_fine'], 'number'],
             [['name'], 'string', 'max' => 50],
-//            [['key_word', 'pic'], 'string', 'max' => 100],
+            [['key_word', 'pic'], 'string', 'max' => 100],
             [['phone'], 'mobile'],
 
-            [['key_word'], 'required', 'on'=>['search']],
+            [['id'], 'required', 'on'=>'detail'],
 
             [[
                 'name',
