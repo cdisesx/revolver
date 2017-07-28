@@ -19,5 +19,18 @@ class EditService extends BaseService
     public function edit(){
         return true;
     }
+    
+    
+    protected $saveOp = null;
+    protected $getSaveRuleByOp = false;
+    public function setSaveOp($op)
+    {
+        $this->getSaveRuleByOp = true;
+        $this->saveOp = $op;
+    }
+    public function getSaveOp()
+    {
+        return $this->saveOp;
+    }
 
 }
