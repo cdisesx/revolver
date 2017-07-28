@@ -18,7 +18,7 @@ class SearchService extends BaseService
      */
     public function getList()
     {
-        $M = \Yii::createObject($this->getDefaultModel());
+        $M = $this->getDefauleModel();
         $this->setEnumsByModel($M);
 
         $Query = new Query();
@@ -41,7 +41,7 @@ class SearchService extends BaseService
      */
     public function getDetail()
     {
-        $M = \Yii::createObject($this->getDefaultModel());
+        $M = $this->getDefauleModel();
         $this->setEnumsByModel($M);
 
         if($this->getRulesBySearchOps){

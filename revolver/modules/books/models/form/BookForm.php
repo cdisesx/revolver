@@ -63,10 +63,10 @@ class BookForm extends Form
             [['borrow_time', 'lose_time', 'return_time', 'renew_time', 'buy_time'], 'safe'],
             [['before_lose_fine'], 'number'],
             [['name'], 'string', 'max' => 50],
-            [['key_word', 'pic'], 'string', 'max' => 100],
+            [['key_word', 'pic'], 'string', 'max' => 255],
             [['phone'], 'mobile'],
 
-            [['id'], 'required', 'on'=>'detail'],
+            [['id'], 'required', 'on'=>['detail','update']],
 
             [[
                 'name',

@@ -52,13 +52,13 @@ class BookController extends Controller
 
     public function actionCreate()
     {
-        $result = BookEdit::getInstance()->checkform($this->checkForm, 'create')->add();
+        $result = BookEdit::getInstance()->checkform($this->checkForm, 'create')->create();
         return new ResponseFormat(['data'=>$result]);
     }
 
     public function actionUpdate()
     {
-        $result = BookEdit::getInstance()->checkform($this->checkForm, 'update')->edit();
+        $result = BookEdit::getInstance()->checkform($this->checkForm, 'update')->update();
         return new ResponseFormat(['data'=>$result]);
     }
 

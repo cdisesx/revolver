@@ -12,7 +12,7 @@ use books\models\db\BookModel;
 
 class BookSearch extends SearchService
 {
-    protected $defaultModel = 'books\models\db\BookModel';
+    public static $defaultModelName = 'books\models\db\BookModel';
 
     public function getList()
     {

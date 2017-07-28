@@ -8,6 +8,7 @@
 namespace app\components\service;
 
 use yii\base\Component;
+use yii\base\Model;
 use yii\db\Connection;
 use yii\db\Query;
 
@@ -31,19 +32,27 @@ class BaseService extends Component
     }
 
     /**
-     * 基础模型；
+     * 基础模型名称；
      * @var string
      */
-    protected $defaultModel = '';
+    public static $defaultModelName = '';
 
-    public function setDefaultModel($defaultModel)
+
+    /**
+     * 基础模型
+     * @var null
+     */
+    public static $defaultModel = null;
+    public static function createDefaultModel()
     {
-        $this->defaultModel = $defaultModel;
+        static::$defaultModel = \Yii::createObject(static::$defaultModelName);
     }
-
-    public function getDefaultModel()
+    public static function getDefauleModel()
     {
-        return $this->defaultModel;
+        if(!static::$defaultModel instanceof Model){
+            static::createDefaultModel();
+        }
+        return static::$defaultModel;
     }
 
 

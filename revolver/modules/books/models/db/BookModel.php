@@ -51,7 +51,7 @@ class BookModel extends ActiveRecord
             [['borrow_time', 'lose_time', 'return_time', 'renew_time', 'buy_time'], 'safe'],
             [['before_lose_fine'], 'number'],
             [['name'], 'string', 'max' => 50],
-            [['key_word', 'pic'], 'string', 'max' => 100],
+            [['key_word', 'pic'], 'string', 'max' => 255],
         ];
     }
 
