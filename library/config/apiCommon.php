@@ -19,10 +19,10 @@ $config_components = [
     'request' => [
         'cookieValidationKey' => MY_APP_ID.'_request'
     ],
-//    'schemaCache' => [
-//        'class' => 'yii\caching\FileCache',
-//        'cachePath' => '@runtime/schema-cache',
-//    ],
+    'schemaCache' => [
+        'class' => 'yii\caching\FileCache',
+        'cachePath' => '@runtime/schema-cache',
+    ],
     'urlManager' => [
         'enablePrettyUrl' => true,
         'showScriptName' => false

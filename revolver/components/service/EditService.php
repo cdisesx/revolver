@@ -7,7 +7,7 @@
  */
 namespace app\components\service;
 
-use books\models\db\BookModel;
+use app\components\db\ActiveRecord;
 use yii\db\Transaction;
 
 class EditService extends BaseService
@@ -31,12 +31,11 @@ class EditService extends BaseService
     public function update(){
 
         $M = $this->getDefauleModel();
-        $MQ = $M::findOne($this->form->id);
-        $BookM = BookModel::findOne($this->form->id);
+        $AR = $M::findOne($this->form->id);
         $ok = false;
-        if($MQ){
-            $MQ->setAttributes($this->form->toArray());
-            $ok = $MQ->update();
+        if($AR){
+            $this->setUpdateAttributes($AR, $this->form->toArray());
+            $ok = $AR->save();
         }
 
         if($ok){
@@ -45,21 +44,40 @@ class EditService extends BaseService
             throw new ServiceException('更新失败', 100006);
         }
 
-
-
     }
-    
-    
-    protected $saveOp = null;
-    protected $getSaveRuleByOp = false;
-    public function setSaveOp($op)
+
+    public function setUpdateAttributes(ActiveRecord &$Query, $data)
     {
-        $this->getSaveRuleByOp = true;
-        $this->saveOp = $op;
+        if(count($data)){
+            foreach ($data as $name=>$value){
+                if(null !== $value){
+                    $Query->setAttribute($name, $value);
+                }
+            }
+        }
     }
-    public function getSaveOp()
+
+    /**
+     * 事物封装
+     * @var Transaction
+     */
+    public static $Transaction = null;
+    public static function beginTransaction()
     {
-        return $this->saveOp;
+        $M = static::getDefauleModel();
+        static::$Transaction = $T = new Transaction(['db'=>$M::getDb()]);
+        $T->begin();
+    }
+
+    public static function commitTransaction()
+    {
+        $T = static::$Transaction;
+        $T->commit();
+    }
+    public static function rollBackTransaction()
+    {
+        $T = static::$Transaction;
+        $T->rollBack();
     }
 
 }

@@ -55,7 +55,6 @@ class AccessFilter extends ActionFilter
 
     public function checkTokenInDB()
     {
-
         $res = Yii::$app->redis;
         $res->set($this->accessKeyId, $this->accessKeySecret);
     }

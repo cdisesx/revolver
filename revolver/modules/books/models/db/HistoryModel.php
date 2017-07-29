@@ -58,10 +58,12 @@ class HistoryModel extends \app\components\db\ActiveRecord
 
     protected $enums = [
         'type'=>[
-            0=>'借阅',
-            1=>'归还',
-            2=>'报失',
-            3=>'续借'
+            1=>'借阅',
+            2=>'归还',
+            3=>'报失',
+            4=>'续借',
+            5=>'新增',
+            6=>'更新'
         ]
     ];
 }
