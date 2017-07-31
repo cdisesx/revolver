@@ -13,20 +13,30 @@ return [
     'params' => [],
     'bootstrap' => ['log'],
     'components' => [
+//        'redis' => [
+//            'class' => 'app\components\tools\Redis',
+//            'host' => '127.0.0.1',
+//            'port' => '6379'
+//        ],
+        'cache' => [
+            'class' => 'yii\redis\Cache',
+        ],
         'redis' => [
-            'class' => 'app\components\tools\Redis',
-            'host' => '192.168.88.164',
-            'port' => '22121'
+            'class' => 'yii\redis\Connection',
+            'hostname' => '127.0.0.1',
+            'port' => '6379',
+            'password' => null,
+            'database' => 0,
         ],
         'dbTushu' => [
             'class' => 'yii\db\Connection',
             'dsn' => sprintf(
                 'mysql:host=%s;dbname=%s',
-                '192.168.88.163',
+                '127.0.0.1',
                 'tushu'
             ),
-            'username' => 'php_user',
-            'password' => 'Og7Ev0iJ4z',
+            'username' => 'root',
+            'password' => '',
             'charset' => 'utf8',
             // 从库的通用配置
 //            'slaveConfig' => [
@@ -51,11 +61,11 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => sprintf(
                 'mysql:host=%s;dbname=%s',
-                '192.168.88.163',
+                '127.0.0.1',
                 'auth_sys'
             ),
-            'username' => 'php_user',
-            'password' => 'Og7Ev0iJ4z',
+            'username' => 'root',
+            'password' => '',
             'charset' => 'utf8',
 
         ],

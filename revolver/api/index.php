@@ -7,7 +7,7 @@
  */
 
 defined('YII_DEBUG') or define('YII_DEBUG', false);
-defined('YII_ENV') or define('YII_ENV', 'local');
+defined('YII_ENV') or define('YII_ENV', 'wmkmac');
 
 defined('MY_LIBRARY') or define('MY_LIBRARY', __DIR__ . '/../../library');
 defined('MY_APP_BASE_PATH') or define('MY_APP_BASE_PATH', __DIR__ . '/..');

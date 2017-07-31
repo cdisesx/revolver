@@ -3,27 +3,44 @@
 namespace app\components\rest;
 
 
+use app\components\service\ServiceException;
+use yii\db\Exception;
+
 class ErrorHandler extends \yii\base\ErrorHandler
 {
 
 
     protected function renderException($exception)
     {
-        $msg = 'prd' === YII_ENV ? 'SYSTEM ERROR' : $exception->getMessage();
-        $err = new ResponseFormat(
+        if($exception instanceof ServiceException){
+            $statusCode = 200;
+            $code = $exception->getCode();
+            $msg = $exception->getMessage();
+        }else{
+            $code = $statusCode = 500;
+            $msg = 'prd' === YII_ENV ? 'SYSTEM ERROR' : $exception->getMessage();
+        }
+
+        $this->doResoponse(new ResponseFormat(
             [
-                'code' => 500,
+                'code' => $code,
                 'message' => $msg,
                 'data' => null,
-            ]
+            ], $statusCode)
         );
-
-        $res = \Yii::$app->response;
-        $res->data = $err;
-        $res->statusCode = 500;
-        $res->send();
     }
 
+    /**
+     * 执行返回
+     * @param ResponseFormat $err
+     */
+    private function doResoponse(ResponseFormat $err, $statusCode = 200)
+    {
+        $res = \Yii::$app->response;
+        $res->data = $err;
+        $res->statusCode = $statusCode;
+        $res->send();
+    }
 
 
 }

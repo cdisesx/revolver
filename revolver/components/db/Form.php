@@ -2,12 +2,12 @@
 
 namespace app\components\db;
 
+use app\components\service\ServiceException;
 use ArrayObject;
 use ReflectionClass;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\base\InvalidParamException;
-use yii\db\Exception;
 use yii\helpers\Inflector;
 use yii\validators\Validator;
 
@@ -44,20 +44,20 @@ class Form extends Model
      *
      * @inheritdoc
      */
-    public function setAttributes($values, $safeOnly = true)
-    {
-        if (is_array($values)) {
-            $attributes = array_flip($safeOnly ? $this->safeAttributes() : $this->attributes());
-            foreach ($values as $name => $value) {
-                $name = Inflector::variablize($name);
-                if (isset($attributes[$name])) {
-                    $this->$name = $value;
-                } elseif ($safeOnly) {
-                    $this->onUnsafeAttribute($name, $value);
-                }
-            }
-        }
-    }
+//    public function setAttributes($values, $safeOnly = true)
+//    {
+//        if (is_array($values)) {
+//            $attributes = array_flip($safeOnly ? $this->safeAttributes() : $this->attributes());
+//            foreach ($values as $name => $value) {
+//                $name = Inflector::variablize($name);
+//                if (isset($attributes[$name])) {
+//                    $this->$name = $value;
+//                } elseif ($safeOnly) {
+//                    $this->onUnsafeAttribute($name, $value);
+//                }
+//            }
+//        }
+//    }
 
     /**
      * 返回非空(!== null)的字段, 并且将驼峰转为下划线格式
@@ -97,15 +97,16 @@ class Form extends Model
             $attribute = key($this->getErrors());
             $error = parent::getFirstError($attribute);
 
+
             if (strpos($error, ' ')) {
                 list($code, $message) = explode(' ', $error, 2);
 
                 if (preg_match('/^[1-9]\d+$/', $code)) {
-                    throw new Exception($message, (int)$code);
+                    throw new ServiceException($message, (int)$code);
                 }
             }
 
-            throw new Exception($error);
+            throw new ServiceException($error);
         }
     }
 
@@ -175,8 +176,9 @@ class Form extends Model
     {
         $validator = null;
 
-        if (class_exists('app\components\Box')) {
-            $validator = call_user_func(['app\components\Box', 'get'], $name);
+        if (class_exists('app\components\validators\Box')) {
+            $validator = call_user_func(['app\components\validators\Box', 'get'], $name);
+
         }
 
         return $validator ?: $name;

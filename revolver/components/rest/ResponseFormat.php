@@ -29,6 +29,12 @@ class ResponseFormat extends Component
      */
     private $data = null;
 
+
+    /**
+     * @var mixed Api Enum
+     */
+    private $enum = null;
+
     /**
      * Get code
      *
@@ -57,6 +63,17 @@ class ResponseFormat extends Component
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * Get Enum
+     *
+     * @return mixed
+     *
+     */
+    public function getEnum()
+    {
+        return $this->enum;
     }
 
     /**
@@ -89,6 +106,11 @@ class ResponseFormat extends Component
         $this->data = $data;
     }
 
+    public function setEnum($enum)
+    {
+        $this->enum = $enum;
+    }
+
     /**
      * setApi
      */
@@ -113,6 +135,7 @@ class ResponseFormat extends Component
             'code' => $this->getCode(),
             'message' => $this->getMessage(),
             'data' => $this->getData(),
+            'enum' => $this->getEnum()
         ];
     }
 

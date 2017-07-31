@@ -51,7 +51,7 @@ class BookModel extends ActiveRecord
             [['borrow_time', 'lose_time', 'return_time', 'renew_time', 'buy_time'], 'safe'],
             [['before_lose_fine'], 'number'],
             [['name'], 'string', 'max' => 50],
-            [['key_word', 'pic'], 'string', 'max' => 100],
+            [['key_word', 'pic'], 'string', 'max' => 255],
         ];
     }
 
@@ -77,10 +77,31 @@ class BookModel extends ActiveRecord
         ];
     }
 
+    protected $enums = [
+        'status' => [
+            1=>'在架',
+            2=>'已借出',
+            3=>'丢失',
+            4=>'续借'
+        ]
+    ];
 
+    /**
+     * 一对一关系
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser()
     {
         return $this->hasOne(UserModel::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * 一对多关系
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(UserModel::className(), ['id' => 'user_id']);
     }
 
 }

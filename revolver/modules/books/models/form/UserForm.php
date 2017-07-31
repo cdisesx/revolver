@@ -10,6 +10,11 @@ use app\components\db\Form;
 class UserForm extends Form
 {
     /**
+     * @var integer id
+     */
+    public $id;
+
+    /**
      * @var string name
      */
     public $name;
@@ -20,17 +25,14 @@ class UserForm extends Form
     public $mobile;
 
     /**
-     * create user
-     */
-    const SCENARIO_CREATE = 'create';
-
-    /**
      * @inheritdoc
      */
     public function scenarios()
     {
         return [
-            self::SCENARIO_CREATE => ['name', 'mobile'],
+            'create' => ['name', 'mobile'],
+            'search' => ['name', 'mobile'],
+            'update' => ['id'],
         ];
     }
 
@@ -40,10 +42,18 @@ class UserForm extends Form
     public function rules()
     {
         return [
-            ['name', 'required'],
+
             ['name', 'string', 'max' => 100],
-            ['mobile', 'required'],
+            ['name', 'required', 'on'=>['create']],
+
             ['mobile', 'mobile'],
+            ['mobile', 'required', 'on'=>['create']],
+
+            ['id', 'integer'],
+            ['id', 'integer', 'on'=>['update']],
+
         ];
     }
+
+
 }

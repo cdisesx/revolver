@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
  */
 class Controller extends \yii\base\Controller
 {
+    public $checkForm = '';
 
     /**
      * 创建行为
