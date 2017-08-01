@@ -27,7 +27,7 @@ defined('MY_APP_ID') or define('MY_APP_ID', 'revolver');
 /**
  * 个人调试用类
  **/
-require(MY_LIBRARY . '/func/HelpFunc.php');
+require(MY_LIBRARY . '/devtool/HelpFunc.php');
 
 /**
  * composer、Yii2的自动加载类
