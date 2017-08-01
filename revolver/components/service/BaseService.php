@@ -31,18 +31,14 @@ class BaseService extends Component
         return $instance;
     }
 
-    /**
-     * 基础模型名称；
-     * @var string
-     */
-    public static $defaultModelName = '';
-
 
     /**
-     * 基础模型
-     * @var null
+     *
+     * @var Model 基础模型
+     * @var string  基础模型名称；
      */
     public static $defaultModel = null;
+    public static $defaultModelName = '';
     public static function createDefaultModel()
     {
         static::$defaultModel = \Yii::createObject(static::$defaultModelName);

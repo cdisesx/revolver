@@ -14,9 +14,12 @@ class EditService extends BaseService
 {
 
 
-    public function create(){
+    public function create($data = null){
+
+        if(null === $data) $data = $this->form->toArray();
+
         $M = $this->getDefauleModel();
-        $M->setAttributes($this->form->toArray());
+        $M->setAttributes($data);
         $M->save();
         $id = $M->getPrimaryKey();
 
@@ -28,20 +31,22 @@ class EditService extends BaseService
     }
 
 
-    public function update(){
+    public function update($data = null){
+
+        if(null === $data) $data = $this->form->toArray();
 
         $M = $this->getDefauleModel();
         $AR = $M::findOne($this->form->id);
         $ok = false;
         if($AR){
-            $this->setUpdateAttributes($AR, $this->form->toArray());
+            $this->setUpdateAttributes($AR, $data);
             $ok = $AR->save();
         }
 
         if($ok){
             return true;
         }else{
-            throw new ServiceException('更新失败', 100006);
+            throw new ServiceException('编辑失败', 100006);
         }
 
     }
