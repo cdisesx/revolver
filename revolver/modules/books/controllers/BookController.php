@@ -36,17 +36,15 @@ class BookController extends Controller
 
     public function actionList()
     {
-        $obj = BookSearch::getInstance();
-        $result = $obj->checkform($this->checkForm, 'list')->getList();
-        return new ResponseFormat(['data' => $result, 'enum' => $obj::getEnums()]);
+        $result = BookSearch::getInstance()->checkform($this->checkForm, 'list')->getList();
+        return new ResponseFormat(['data' => $result, 'enum' => BookSearch::getEnums()]);
     }
 
 
     public function actionDetail()
     {
-        $obj = BookSearch::getInstance();
-        $result = $obj->checkform($this->checkForm, 'detail')->getDetail();
-        return new ResponseFormat(['data' => $result, 'enum' => $obj::getEnums()]);
+        $result =  BookSearch::getInstance()->checkform($this->checkForm, 'detail')->getDetail();
+        return new ResponseFormat(['data' => $result, 'enum' => BookSearch::getEnums()]);
     }
 
 
