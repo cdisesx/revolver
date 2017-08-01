@@ -14,7 +14,7 @@ use Yii;
  * @property integer $num
  * @property integer $type
  */
-class CodeModel extends \app\components\db\ActiveRecord
+class CodeModel extends \revolver\components\db\ActiveRecord
 {
     /**
      * @inheritdoc

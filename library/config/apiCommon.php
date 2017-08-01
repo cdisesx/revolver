@@ -36,7 +36,7 @@ $config_components = [
  */
 if(!YII_DEBUG) {
     $config_components['errorHandler'] = [
-        'class' => 'app\components\rest\ErrorHandler'
+        'class' => 'revolver\components\rest\ErrorHandler'
     ];
 }
 

@@ -2,7 +2,6 @@
 
 namespace books\models\db;
 
-use app\components\db\ActiveRecord;
 use Yii;
 
 /**
@@ -12,7 +11,7 @@ use Yii;
  * @property string $name
  * @property string $phone
  */
-class UserModel extends ActiveRecord
+class UserModel extends \revolver\components\db\ActiveRecord
 {
     /**
      * @inheritdoc

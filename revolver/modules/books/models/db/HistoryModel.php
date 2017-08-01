@@ -13,7 +13,7 @@ use Yii;
  * @property integer $do_type
  * @property string $do_time
  */
-class HistoryModel extends \app\components\db\ActiveRecord
+class HistoryModel extends \revolver\components\db\ActiveRecord
 {
     /**
      * @inheritdoc

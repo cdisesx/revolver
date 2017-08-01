@@ -7,7 +7,7 @@
  */
 namespace books\services\book;
 
-use app\components\service\SearchService;
+use revolver\components\service\SearchService;
 use books\models\db\BookModel;
 
 class BookSearch extends SearchService

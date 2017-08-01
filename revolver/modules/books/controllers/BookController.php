@@ -2,11 +2,11 @@
 
 namespace books\controllers;
 
-use app\components\rest\ResponseFormat;
+use revolver\components\rest\ResponseFormat;
+use revolver\components\rest\Controller;
 use books\services\book\BookEdit;
 use books\services\book\BookSearch;
 use Yii;
-use app\components\rest\Controller;
 
 
 /**

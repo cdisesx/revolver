@@ -2,12 +2,10 @@
 
 namespace books\models\form;
 
-use app\components\db\Form;
-
 /**
  * Book form
  */
-class BookForm extends Form
+class BookForm extends \revolver\components\db\Form
 {
     public $id;
     public $name;

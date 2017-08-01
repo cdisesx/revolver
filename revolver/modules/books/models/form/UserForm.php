@@ -2,12 +2,10 @@
 
 namespace books\models\form;
 
-use app\components\db\Form;
-
 /**
  * User form
  */
-class UserForm extends Form
+class UserForm extends \revolver\components\db\Form
 {
     /**
      * @var integer id

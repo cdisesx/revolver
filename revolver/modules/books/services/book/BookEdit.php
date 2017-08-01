@@ -7,11 +7,9 @@
  */
 namespace books\services\book;
 
-use app\components\service\EditService;
-use app\components\service\ServiceException;
+use revolver\components\service\EditService;
 use books\models\db\HistoryModel;
 use yii\db\Exception;
-use yii\db\Transaction;
 
 class BookEdit extends EditService
 {

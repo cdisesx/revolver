@@ -17,4 +17,5 @@ return array(
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'OSS\\' => array($vendorDir . '/aliyuncs/oss-sdk-php/src/OSS'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
+    'revolver\\components\\' => array($vendorDir . '/revolver/components/src'),
 );

@@ -18,7 +18,7 @@ use Yii;
  * @property string $pay_price
  * @property string $create_time
  */
-class TicketModel extends \app\components\db\ActiveRecord
+class TicketModel extends \revolver\components\db\ActiveRecord
 {
     /**
      * @inheritdoc

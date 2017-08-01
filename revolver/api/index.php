@@ -6,11 +6,13 @@
  * Time: 16:26
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', false);
-defined('YII_ENV') or define('YII_ENV', 'wmkmac');
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'xiaofupc');
 
 defined('MY_LIBRARY') or define('MY_LIBRARY', __DIR__ . '/../../library');
 defined('MY_APP_BASE_PATH') or define('MY_APP_BASE_PATH', __DIR__ . '/..');
+
+// 开启gii debugger
 defined('MY_OPEN_EX') or define('MY_OPEN_EX', true);
 
 /**
@@ -25,7 +27,7 @@ defined('MY_APP_ID') or define('MY_APP_ID', 'revolver');
 /**
  * 个人调试用类
  **/
-require(MY_APP_BASE_PATH . '/components/HelpFunc.php');
+require(MY_LIBRARY . '/func/HelpFunc.php');
 
 /**
  * composer、Yii2的自动加载类

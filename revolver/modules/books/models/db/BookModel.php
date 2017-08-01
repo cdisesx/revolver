@@ -2,7 +2,6 @@
 
 namespace books\models\db;
 
-use app\components\db\ActiveRecord;
 use Yii;
 
 /**
@@ -22,7 +21,7 @@ use Yii;
  * @property string $buy_time
  * @property string $before_lose_fine
  */
-class BookModel extends ActiveRecord
+class BookModel extends \revolver\components\db\ActiveRecord
 {
     /**
      * @inheritdoc
