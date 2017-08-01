@@ -6,11 +6,18 @@
             "email": "hongxm@oriental-finance.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:AutoRevolver/components.git"
+        }
+    ],
     "require": {
 		"yiisoft/yii2": ">=2.0.12",
         "yiisoft/yii2-swiftmailer": "*",
         "phpoffice/phpexcel": "*",
-        "aliyuncs/oss-sdk-php": "*"
+        "aliyuncs/oss-sdk-php": "*",
+        "revolver/components": "^0.0.1"
 	},
 	"require-dev": {
         "yiisoft/yii2-debug": "*",
