@@ -9,6 +9,9 @@
 namespace library\devtool\tools;
 
 
+use yii\bootstrap\Html;
+use yii\web\HeaderCollection;
+
 class GetmacAddr
 {
 
@@ -16,11 +19,19 @@ class GetmacAddr
      * @var array $rules mac对应环境配置
      */
     private $rules = [
-        '54-AB-3A-C7-93-55'=>'xiaofuthinkpad'
+        '54-AB-3A-C7-93-55'=>'xiaofuthinkpad',
+        '0A-00-27-00-00-16'=>'xiaofupc'
     ];
     public function getThisPcEnv()
     {
-        return isset($this->rules[$this->macAddr])? $this->rules[$this->macAddr] : null;
+        if(isset($this->rules[$this->macAddr])){
+            return $this->rules[$this->macAddr];
+        }else{
+            header("Content-type:text/html;charset=utf-8");
+            throw new \Exception('请处理好配置，详情请看代码。');
+            exit;
+        }
+
     }
 
 
