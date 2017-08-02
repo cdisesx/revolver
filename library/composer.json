@@ -17,7 +17,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "phpoffice/phpexcel": "*",
         "aliyuncs/oss-sdk-php": "*",
-        "revolver/components": "^0.0.1"
+        "revolver/components": "0.0.1"
 	},
 	"require-dev": {
         "yiisoft/yii2-debug": "*",

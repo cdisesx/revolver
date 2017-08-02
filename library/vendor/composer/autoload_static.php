@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit34390351de7347bed2c12524f2849454
+class ComposerStaticInit71d84142e3cf61bcc6521d49fbbf1151
 {
     public static $files = array (
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
@@ -15,13 +15,16 @@ class ComposerStaticInit34390351de7347bed2c12524f2849454
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
-            'yii\\redis\\' => 10,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        'r' => 
+        array (
+            'revolver\\components\\' => 20,
         ),
         'c' => 
         array (
@@ -41,10 +44,6 @@ class ComposerStaticInit34390351de7347bed2c12524f2849454
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
-        ),
-        'yii\\redis\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-redis',
         ),
         'yii\\gii\\' => 
         array (
@@ -69,6 +68,10 @@ class ComposerStaticInit34390351de7347bed2c12524f2849454
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'revolver\\components\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/revolver/components/src',
         ),
         'cebe\\markdown\\' => 
         array (
@@ -111,9 +114,9 @@ class ComposerStaticInit34390351de7347bed2c12524f2849454
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit34390351de7347bed2c12524f2849454::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit34390351de7347bed2c12524f2849454::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit34390351de7347bed2c12524f2849454::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit71d84142e3cf61bcc6521d49fbbf1151::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit71d84142e3cf61bcc6521d49fbbf1151::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit71d84142e3cf61bcc6521d49fbbf1151::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -375,7 +375,6 @@ class Response extends \yii\base\Response
             }
         }
         $statusCode = $this->getStatusCode();
-
         header("HTTP/{$this->version} {$statusCode} {$this->statusText}");
         $this->sendCookies();
     }

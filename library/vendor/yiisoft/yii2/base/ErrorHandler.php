@@ -88,7 +88,6 @@ abstract class ErrorHandler extends Component
      */
     public function handleException($exception)
     {
-
         if ($exception instanceof ExitException) {
             return;
         }
@@ -106,13 +105,10 @@ abstract class ErrorHandler extends Component
 
         try {
             $this->logException($exception);
-
             if ($this->discardExistingOutput) {
                 $this->clearOutput();
             }
             $this->renderException($exception);
-
-
             if (!YII_ENV_TEST) {
                 \Yii::getLogger()->flush(true);
                 if (defined('HHVM_VERSION')) {

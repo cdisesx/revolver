@@ -29,7 +29,7 @@ if(true){
  * MY_APP_BASE_PATH 当期应用地址
  * MY_OPEN_EX 开启gii debugger
  */
-defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'local');
 defined('MY_APP_BASE_PATH') or define('MY_APP_BASE_PATH', __DIR__ . '/..');
 defined('MY_OPEN_EX') or define('MY_OPEN_EX', true);

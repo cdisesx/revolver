@@ -133,7 +133,6 @@ class Instance
         }
 
         if ($reference instanceof self) {
-
             try {
                 $component = $reference->get($container);
             } catch (\ReflectionException $e) {
@@ -145,7 +144,6 @@ class Instance
                 throw new InvalidConfigException('"' . $reference->id . '" refers to a ' . get_class($component) . " component. $type is expected.");
             }
         }
-
 
         $valueType = is_object($reference) ? get_class($reference) : gettype($reference);
         throw new InvalidConfigException("Invalid data type: $valueType. $type is expected.");
