@@ -1,11 +1,12 @@
 {
-    "name": "revolver/components",
+    "name": "autoRevolver/components",
     "authors": [
         {
             "name": "Xiaofu",
             "email": "394992322@qq.com"
         }
     ],
+    "version": "0.1",
     "require": {
         "yiisoft/yii2": ">=2.0.0"
     },
