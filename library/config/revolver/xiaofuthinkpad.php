@@ -14,7 +14,7 @@ return [
     'bootstrap' => ['log'],
     'components' => [
         'redis' => [
-            'class' => 'app\components\tools\Redis',
+            'class' => 'revolver\components\tools\Redis',
             'host' => '192.168.88.164',
             'port' => '22121'
         ],

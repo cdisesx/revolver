@@ -6,14 +6,34 @@
  * Time: 16:26
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'xiaofupc');
-
+/**
+ * MY_LIBRARY Yii类库导入
+ */
 defined('MY_LIBRARY') or define('MY_LIBRARY', __DIR__ . '/../../library');
-defined('MY_APP_BASE_PATH') or define('MY_APP_BASE_PATH', __DIR__ . '/..');
 
-// 开启gii debugger
+/**
+ * 开发环境，引入个人调试用类
+ * 并自动获取根据当前Mac匹配环境
+ **/
+if(true){
+    require(MY_LIBRARY . '/devtool/HelpFunc.php');
+    require (MY_LIBRARY . '/devtool/GetmacAddr.php');
+    $Mac = new \library\devtool\tools\GetmacAddr('win');
+    define('YII_ENV', $Mac->getThisPcEnv());
+}
+
+/**
+ * 基本环境配置
+ * YII_DEBUG yii自带 debug
+ * YII_ENV 设置默认当前环境
+ * MY_APP_BASE_PATH 当期应用地址
+ * MY_OPEN_EX 开启gii debugger
+ */
+defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_ENV') or define('YII_ENV', 'local');
+defined('MY_APP_BASE_PATH') or define('MY_APP_BASE_PATH', __DIR__ . '/..');
 defined('MY_OPEN_EX') or define('MY_OPEN_EX', true);
+
 
 /**
  * 设置该MY_APP_ID后,以下位置都应以该ID命名
@@ -23,11 +43,6 @@ defined('MY_OPEN_EX') or define('MY_OPEN_EX', true);
  * 4.枚举文件名
  **/
 defined('MY_APP_ID') or define('MY_APP_ID', 'revolver');
-
-/**
- * 个人调试用类
- **/
-require(MY_LIBRARY . '/devtool/HelpFunc.php');
 
 /**
  * composer、Yii2的自动加载类

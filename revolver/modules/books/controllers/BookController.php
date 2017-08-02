@@ -4,8 +4,8 @@ namespace books\controllers;
 
 use revolver\components\rest\ResponseFormat;
 use revolver\components\rest\Controller;
-use books\services\book\BookEdit;
-use books\services\book\BookSearch;
+use books\services\book\BookEdit as E;
+use books\services\book\BookSearch as S;
 use Yii;
 
 
@@ -36,27 +36,27 @@ class BookController extends Controller
 
     public function actionList()
     {
-        $result = BookSearch::getInstance()->checkform($this->checkForm, 'list')->getList();
-        return new ResponseFormat(['data' => $result, 'enum' => BookSearch::getEnums()]);
+        $result = S::getInstance()->checkform($this->checkForm, 'list')->getList();
+        return new ResponseFormat(['data' => $result, 'enum' => S::getEnums()]);
     }
 
 
     public function actionDetail()
     {
-        $result =  BookSearch::getInstance()->checkform($this->checkForm, 'detail')->getDetail();
-        return new ResponseFormat(['data' => $result, 'enum' => BookSearch::getEnums()]);
+        $result =  S::getInstance()->checkform($this->checkForm, 'detail')->getDetail();
+        return new ResponseFormat(['data' => $result, 'enum' => S::getEnums()]);
     }
 
 
     public function actionCreate()
     {
-        $result = BookEdit::getInstance()->checkform($this->checkForm, 'create')->create();
+        $result = E::getInstance()->checkform($this->checkForm, 'create')->create();
         return new ResponseFormat(['data'=>$result]);
     }
 
     public function actionUpdate()
     {
-        $result = BookEdit::getInstance()->checkform($this->checkForm, 'update')->update();
+        $result = E::getInstance()->checkform($this->checkForm, 'update')->update();
         return new ResponseFormat(['data'=>$result]);
     }
 
