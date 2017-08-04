@@ -18,7 +18,7 @@ defined('MY_LIBRARY') or define('MY_LIBRARY', __DIR__ . '/../../library');
 if(true){
     require(MY_LIBRARY . '/devtool/HelpFunc.php');
     require (MY_LIBRARY . '/devtool/GetmacAddr.php');
-    $Mac = new \library\devtool\tools\GetmacAddr('win');
+    $Mac = new \library\devtool\tools\GetmacAddr();
     define('YII_ENV', $Mac->getThisPcEnv());
 }
 
