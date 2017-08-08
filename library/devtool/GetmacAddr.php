@@ -20,7 +20,8 @@ class GetmacAddr
      */
     private $rules = [
         '54-AB-3A-C7-93-55'=>'xiaofuthinkpad',
-        '0A-00-27-00-00-16'=>'xiaofupc'
+        '0A-00-27-00-00-16'=>'xiaofupc',
+        'dc:a9:04:77:30:39'=>'wmkmac',
     ];
     public function getThisPcEnv()
     {
@@ -116,7 +117,7 @@ class GetmacAddr
 
     /*linux系统中获取方法*/
     private function for_linux_os(){
-        @exec("ifconfig -a", $this->result);
+        exec("cat ~/revolver.mac", $this->result);
         return $this->result;
     }
 
@@ -124,17 +125,19 @@ class GetmacAddr
     /*win系统中的获取方法*/
     private function for_windows_os(){
         @exec("ipconfig /all", $this->result);
+
         if ( $this->result ) {
             return $this->result;
-        } else {
-            $ipconfig = $_SERVER["WINDIR"]."\system32\ipconfig.exe";
-            if(is_file($ipconfig)) {
-                @exec($ipconfig." /all", $this->result);
-            } else {
-                @exec($_SERVER["WINDIR"]."\system\ipconfig.exe /all", $this->result);
-                return $this->result;
-            }
         }
+//        else {
+//            $ipconfig = $_SERVER["WINDIR"]."\system32\ipconfig.exe";
+//            if(is_file($ipconfig)) {
+//                @exec($ipconfig." /all", $this->result);
+//            } else {
+//                @exec($_SERVER["WINDIR"]."\system\ipconfig.exe /all", $this->result);
+//                return $this->result;
+//            }
+//        }
     }
 
 
