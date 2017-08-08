@@ -41,7 +41,7 @@ defined('MY_OPEN_EX') or define('MY_OPEN_EX', true);
  * 2.项目根目录名称
  * 3.对应配置文件目录
  **/
-defined('MY_APP_ID') or define('MY_APP_ID', 'maker');
+defined('MY_APP_ID') or define('MY_APP_ID', 'books');
 
 /**
  * composer、Yii2的自动加载类
@@ -52,5 +52,5 @@ require(MY_LIBRARY . '/vendor/yiisoft/yii2/Yii.php');
 /**
  * 生成应用主体
  */
-$config = require(MY_LIBRARY . '/config/webCommon.php');
+$config = require(MY_LIBRARY . '/config/apiCommon.php');
 (new \yii\web\Application($config))->run();
